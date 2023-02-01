@@ -1,0 +1,127 @@
+$cell-w: 4vw;
+$cell-w-sm: 10vw;
+
+.cell {
+  width: $cell-w;
+  height: $cell-w;
+  border: $gray-500 solid 0.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: rgba($blue-100, 0.5);
+  }
+
+  @media (max-width: 1100px) {
+    width: $cell-w-sm;
+    height: $cell-w-sm;
+  }
+}
+
+.empty {
+  cursor: auto;
+  background-color: $gray-400;
+  &:hover {
+    background-color: $gray-400;
+  }
+}
+
+.cells {
+  display: grid;
+  background-color: $gray-400;
+  padding: 0;
+
+  // grid-template-columns: repeat(4, $cell-w);
+  // grid-template-rows: repeat(4, $cell-w);
+
+  // @media (max-width: 1100px) {
+  //   grid-template-columns: repeat(4, $cell-w-sm);
+  //   grid-template-rows: repeat(4, $cell-w-sm);
+  // }
+}
+
+@for $i from 3 through 8 {
+  .cells#{$i} {
+    grid-template-columns: repeat($i, $cell-w);
+    grid-template-rows: repeat($i, $cell-w);
+
+    @media (max-width: 1100px) {
+      grid-template-columns: repeat($i, $cell-w-sm);
+      grid-template-rows: repeat($i, $cell-w-sm);
+    }
+  }
+}
+
+.game__container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  // width: calc(4 * $cell-w);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.row_width {
+  width: 100%;
+}
+
+.to-left {
+  animation: 0.3s ease-in-out;
+  animation-name: left;
+}
+
+.to-right {
+  animation: 0.3s ease-in-out;
+  animation-name: right;
+}
+.to-top {
+  animation: 0.3s ease-in-out;
+  animation-name: top;
+}
+
+.to-bottom {
+  animation: 0.3s ease-in-out;
+  animation-name: bottom;
+}
+
+@keyframes left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes top {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+@keyframes bottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
